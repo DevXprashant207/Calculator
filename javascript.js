@@ -7,12 +7,17 @@ array.forEach(button => {
     button.addEventListener('click', (e) => {
         if (e.target.innerHTML == '=') {
             try {
+                // Log the input string before eval
+                console.log("Input string before eval:", string);
+                
                 // Basic validation to prevent invalid input
                 if (string) {
                     // Replace any invalid characters or patterns here
                     string = string.replace(/[^0-9+\-*/().]/g, '');
-                    string = eval(string);
-                    input.value = string;
+                    // Evaluate the expression
+                    let result = eval(string);
+                    input.value = result;
+                    string = result.toString(); // Update string for further calculations
                 }
             } catch (error) {
                 input.value = "Error"; // Display error if eval fails
